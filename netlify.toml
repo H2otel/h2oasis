@@ -1,0 +1,29 @@
+[images]
+  remote_images = [
+    "https://ext.same-assets.com/749974248/3784799825.png",
+    "https://ext.same-assets.com/174946582/58013150.jpeg",
+    "https://ext.same-assets.com/1531439512/1534660505.png",
+    "https://ext.same-assets.com/1169117998/1183703983.jpeg",
+    "https://ext.same-assets.com/476458201/1149014131.jpeg",
+    "https://ext.same-assets.com/4103837103/1441944565.webp"
+  ]
+
+[build]
+  command = "bun run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+
+[functions]
+  included_files = ["!node_modules/**/*", ".next/standalone/**", ".next/static/**"]
